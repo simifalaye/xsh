@@ -38,7 +38,7 @@ XSHELL="${XSHELL#-}" # remove leading '-' for login shells
 # global value, if any. This would prevent processes started from xsh units to
 # properly inherit the global value.
 XSH_DIR="${XSH_DIR:-${XDG_CONFIG_HOME:-$HOME/.config}/xsh}"
-XSH_CONFIG_DIR="${XSH_CONFIG_DIR:-$XSH_DIR}"
+XSH_CONFIG_DIR="${XSH_CONFIG_DIR:-$HOME/.config/shell}"
 XSH_RUNCOM_PREFIX="${XSH_RUNCOM_PREFIX:-@}"
 
 # A simple framework for shell configuration management.
@@ -317,7 +317,7 @@ _xsh_init() {
 #
 # Usage: xsh list
 _xsh_list() {
-  echo "$_XSH_MODULES" | tr ' ' '\n' | column -s ';' -t -N MODULE,SHELLS,RUNCOMS
+  echo -e "MODULE;SHELLS;RUNCOMS\n${_XSH_MODULES}" | tr ' ' '\n' | column -s ';' -t
   return 0
 }
 
